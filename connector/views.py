@@ -127,7 +127,7 @@ def get_access_token(req):
     dataa = get_bulk_product_from_shopify(shop,data['access_token'])
     if dataa["success"]:
         print("sucess in product container")
-        # entry_product = entry_product_container(dataa)
+        entry_product = entry_product_container(dataa)
     else:
         dataa = get_bulk_product_from_shopify(shop,data['access_token'])
     shop2 = str(shop)
@@ -164,6 +164,7 @@ def entry_product_container(data):
     idd = 4
     title = 'k'
     vendor = 'k'
+    optn = {}
     variants = {}
     for i in val:
         for k,j in i.items():
@@ -176,7 +177,9 @@ def entry_product_container(data):
                 vendor = j
             if(k == 'variants'):
                 variants = j
-        Products.objects.create(_id= idd, title = title, vendor = vendor , variants=variants)
+            if(k == 'options'):
+                optn = j
+        Products.objects.create(_id= idd, title = title, vendor = vendor , variants=variants,options=optn)
             
     print("----------------------------------------------------------")
 

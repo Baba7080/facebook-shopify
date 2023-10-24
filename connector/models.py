@@ -19,6 +19,8 @@ class Products(models.Model):
     title = models.CharField(null = False, max_length=50)
     vendor = models.CharField(null = False, max_length=50)
     variants = jsonfield.JSONField()
+    options = jsonfield.JSONField(default="blank")
+
     # class Meta:
     #     verbose_name = _("")
     #     verbose_name_plural = _("s")
