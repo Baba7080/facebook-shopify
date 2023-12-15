@@ -10,7 +10,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from urllib.parse import unquote
 from rest_framework.views import APIView
-from myproject.serializer import YourModelSerializer
+# from myproject.serializer import YourModelSerializer
 from rest_framework.response import Response
 # Create your views here.
 def home(request):
@@ -68,9 +68,13 @@ def entry_user_details(shop_name,access_token):
 
         return
     else:
-        print("entry in else")
-        user = user_details.objects.create(user_id=data['user']['id'],shop_name = shop_name,marketplace={0:{data},1:{}} )
-        print(user)
+        entrydata = {}
+        for k,v in data:
+            entrydata[k] = v
+        # print("entry in else")
+        # user = user_details.objects.create(user_id=data['user']['id'],shop_name = shop_name,marketplace={0:{data},1:{}} )
+        user = user_details_collection.insert_many(entrydata)
+        # print(user)
         return
     
 @csrf_exempt
@@ -133,12 +137,15 @@ def get_access_token(req):
     shop2 = str(shop)
     substring = shop2.split('.')[0]
     print(substring)
-    product_container = Products.objects.filter(vendor=substring)
+    product_container = Products_collection.find({"vendor": {"$regex": substring}})
     print(product_container)
     # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
     return render(req,'home.html',{'product':product_container})
 def checkInstallation(shop_name,access_token):
-    shop = user_details.objects.filter(shop_name=shop_name)
+    # shop = user_details.objects.filter(shop_name=shop_name)
+    print("shoop")
+    shop = user_details_collection.find({"shop_name":shop_name})
+    print(shop)
     print("user_details")
     print(shop)
     if(shop):
@@ -154,33 +161,18 @@ def checkInstallation(shop_name,access_token):
 def entry_product_container(data):
     print(data)
     val = data['data']['products']
-    # gf = {}
-    # for i,k in val:
-    #     gf[i]=k
-    #         # for l,j in i.items():
-    # print(gf)
-    # Products.objects.create(gf)
+    products_to_insert = []  # Create an empty list to store the products
 
-    idd = 4
-    title = 'k'
-    vendor = 'k'
-    optn = {}
-    variants = {}
     for i in val:
-        for k,j in i.items():
-            # print(i)
-            if(k == 'id'):
-                idd = j
-            if(k == 'title'):
-                title = j
-            if(k == 'vendor'):
-                vendor = j
-            if(k == 'variants'):
-                variants = j
-            if(k == 'options'):
-                optn = j
-        Products.objects.create(_id= idd, title = title, vendor = vendor , variants=variants,options=optn)
-            
+        optn = {}  # Move the creation of optn inside the loop
+        for k, j in i.items():
+            optn[k] = j
+
+        print(optn)
+        products_to_insert.append(optn)  # Append the product to the list
+
+    if products_to_insert:
+        Products_collection.insert_many(products_to_insert)
     print("----------------------------------------------------------")
 
 

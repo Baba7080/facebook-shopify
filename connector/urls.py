@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from .send import *
+# from .send import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
@@ -24,6 +24,6 @@ urlpatterns = [
     path('commense_auth/',get_access_token,name='get_access_token'),
     path('webhook',getwebhook,name='getwebhook'),
     path('yourjson/',YourAPIView.as_view(),name='yourjson'),
-    path('facebok/',facebookAouth,name='facebok'),
-    path('facebokredirect/',facebookAouthredirect,name='facebokredirect'),
+    # path('facebok/',facebookAouth,name='facebok'),
+    # path('facebokredirect/',facebookAouthredirect,name='facebokredirect'),
 ]
