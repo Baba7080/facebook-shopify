@@ -8,6 +8,7 @@ user_details_collection = db['user_details']
 app_shop_collection = db['app_shop']
 Products_collection = db['Products']
 facebookresponce_collection = db['facebookresponce']
+webhook_collection = db['webhook']
 # config_collection = db['confi']
 # from django.contrib.postgres.fields import ArrayField
 # import jsonfield
