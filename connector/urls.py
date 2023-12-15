@@ -20,6 +20,7 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
+    path('log/',logcreation,name='logcreation'),
     path('shopify/',oauth_shopify,name='oauth_shopify'),
     path('commense_auth/',get_access_token,name='get_access_token'),
     path('webhook',getwebhook,name='getwebhook'),
