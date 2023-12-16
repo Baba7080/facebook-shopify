@@ -15,6 +15,11 @@ from .tests import *
 from rest_framework.response import Response
 # Create your views here.
 def home(request):
+    substring = "one7000"
+    product_container = Products_collection.find({"vendor": {"$regex": substring}})
+    # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
+    WriteIntoLog("Success","views.py","get_access_token","req retur")
+    return render(request,'productlisting.html',{'product':product_container})
     return render(request,'home.html')
 def oauth_shopify(req):
     shop = req.GET['shop']
@@ -162,7 +167,8 @@ def get_access_token(req):
     substring = shop2.split('.')[0]
     product_container = Products_collection.find({"vendor": {"$regex": substring}})
     # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
-    return render(req,'home.html',{'product':product_container})
+    WriteIntoLog("Success","views.py","get_access_token","req retur")
+    return render(req,'productlisting.html',{'product':product_container})
 def logcreation(request):
     WriteIntoLog("SuCCESS","views.py","logcreation","activated")
     return HttpResponse("hhhh")

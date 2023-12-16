@@ -1,0 +1,45 @@
+2023-12-17 01:26:56             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=8dd156b557fe8494df99d42fcf7ae20e&hmac=ada914990ad26a27a301098980449cf8ab0f9cbd0d8ff20c647da7058be6a25b&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1702756616'>
+2023-12-17 01:26:59             ERROR             views             get_current_user             one7000.myshopify.com {e}
+2023-12-17 01:26:59             ERROR             views             entry_user_details             one7000.myshopify.com current user not get 
+2023-12-17 01:26:59             ERROR             views             entry_user_details             Error inserting user details: Error: Current user data is None.
+2023-12-17 01:26:59             Updated             views.py             required_data_app_shop             one7000.myshopify.com updated => app_shop
+2023-12-17 01:27:00             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/create
+2023-12-17 01:27:00             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/update
+2023-12-17 01:27:01             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/delete
+2023-12-17 01:27:01             Success             views.py             get_access_token             req retur
+2023-12-17 01:46:43             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=5bc63d44e2939be3fdb16f35d80d2081&hmac=87e43adbaffc58de16b74c3e58ef8558fcd9a612f8e4fab7f904ad70063de1cf&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1702757803'>
+2023-12-17 01:46:47             ERROR             views             get_current_user             one7000.myshopify.com {e}
+2023-12-17 01:46:47             ERROR             views             entry_user_details             one7000.myshopify.com current user not get 
+2023-12-17 01:46:47             ERROR             views             entry_user_details             Error inserting user details: Error: Current user data is None.
+2023-12-17 01:46:47             Updated             views.py             required_data_app_shop             one7000.myshopify.com updated => app_shop
+2023-12-17 01:46:48             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/create
+2023-12-17 01:46:48             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/update
+2023-12-17 01:46:49             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/delete
+2023-12-17 01:46:49             Success             views.py             get_access_token             req retur
+2023-12-17 02:00:41             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=5b7ac8bdebb1b25f21e587f6d68fbfd6&hmac=bfa70e0f43151e817f848114e012e20f38372a6c5db23611dc301208cd32c2c1&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1702758641'>
+2023-12-17 02:00:49             ERROR             views             get_current_user             one7000.myshopify.com {e}
+2023-12-17 02:00:49             ERROR             views             entry_user_details             one7000.myshopify.com current user not get 
+2023-12-17 02:00:50             ERROR             views             entry_user_details             Error inserting user details: Error: Current user data is None.
+2023-12-17 02:00:51             Updated             views.py             required_data_app_shop             one7000.myshopify.com updated => app_shop
+2023-12-17 02:00:53             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/create
+2023-12-17 02:00:54             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/update
+2023-12-17 02:00:55             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/delete
+2023-12-17 02:00:55             Success             views.py             get_access_token             req retur
+2023-12-17 02:08:52             Success             views.py             get_access_token             req retur
+2023-12-17 02:09:12             Success             views.py             get_access_token             req retur
+2023-12-17 02:09:34             Success             views.py             get_access_token             req retur
+2023-12-17 02:10:56             Success             views.py             get_access_token             req retur
+2023-12-17 02:21:46             Success             views.py             get_access_token             req retur
+2023-12-17 02:23:11             Success             views.py             get_access_token             req retur
+2023-12-17 02:25:12             Success             views.py             get_access_token             req retur
+2023-12-17 02:26:53             Success             views.py             get_access_token             req retur
+2023-12-17 02:27:45             Success             views.py             get_access_token             req retur
+2023-12-17 02:59:26             Success             views.py             get_access_token             req retur
+2023-12-17 03:05:04             Success             views.py             get_access_token             req retur
+2023-12-17 03:19:45             Success             views.py             get_access_token             req retur
+2023-12-17 03:20:49             Success             views.py             get_access_token             req retur
+2023-12-17 03:47:04             Success             views.py             get_access_token             req retur
+2023-12-17 03:47:47             Success             views.py             get_access_token             req retur
+2023-12-17 03:48:10             Success             views.py             get_access_token             req retur
+2023-12-17 03:48:19             Success             views.py             get_access_token             req retur
+2023-12-17 03:50:12             Success             views.py             get_access_token             req retur
