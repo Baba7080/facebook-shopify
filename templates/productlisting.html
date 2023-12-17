@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block css %}
 <link rel="stylesheet" href="https://sdks.shopifycdn.com/polaris/5.3.0/polaris.min.css">
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
 {% endblock css %}
 {% block title %}Bytelinkup{% endblock title %}
 {% block main-home %}
@@ -15,6 +20,7 @@
         <!-- Shopping cart table -->
         <div class="table-responsive">
           <table class="table">
+
             <thead>
               <tr>
                 <th scope="col" class="border-0 bg-light">
@@ -36,37 +42,32 @@
                 </th>
               </tr>
             </thead>
-            
-            <tbody>
-              {% for ap in product %}
-              <tr>
-                
-                <td scope="row" class="border-0">
+          <tbody>
+            {% for ap in product %}
+            <tr>
+              <td scope="row" class="border-0">
+                {% if ap.variants %}
+                  <button type="button" class="collapsible" onclick="extendrow('{{ ap.id }}')">➕</button>
+                {% endif %}
+                <img src="https://bootstrapious.com/i/snippets/sn-cart/product-1.jpg" id="plus_ic" alt="" width="50" class="img-fluid rounded shadow-sm">
+              </td>
+              <td class="border-0 align-middle"><strong>{{ ap.vendor }}</strong></td>
+              <td class="border-0 align-middle"><strong>3</strong></td>
+              <td class="border-0 align-middle"><strong>{{ pr.price }}</strong></td>
+              <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+            </tr><br>
+            <tr>
+              <td colspan="5"> <!-- Span across all columns -->
+                <div class="hidden" id="{{ ap.id }}">
+                  <!-- Content goes here -->
                   
-                  <!-- <div class="p-2"> -->
-                    {% if ap.variants %}
-                     <button type="button" class="collapsible" onclick="extendrow('{{ ap.id }}')">➕</button>
-                     
-                    {% endif %}
-                    <img src="https://bootstrapious.com/i/snippets/sn-cart/product-1.jpg" id="plus_ic" alt="" width="50" class="img-fluid rounded shadow-sm">
-                   
-                  <!-- </div> -->
-                 
-                </td>
-                <td class="border-0 align-middle"><strong>{{ap.vendor}}</strong></td>
-                <td class="border-0 align-middle"><strong>3</strong></td>
-                <td class="border-0 align-middle"><strong>{{pr.price}}</strong></td>
-                <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                
-                <tr >
-                  <div class="hidden" id="{{ ap.id }}">
-  
-                  </div>
-                </tr>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+                </div>
+              </td>
+            </tr><br>
+            {% endfor %}
+          </tbody>
+        </table>
+          
         </div>
         <!-- End -->
       </div>
@@ -119,7 +120,7 @@
         
       </tbody>
     </table>
-  </div>  --> -->
+  </div>  --> 
 
   <!-- <section style="background-color: #eee;">
     <div class="container py-5">
@@ -185,50 +186,70 @@
 
   
 
-  <!-- Include Shopify's JavaScript libraries -->
+<!-- Include Shopify's JavaScript libraries -->
   {% endblock main-home %}
   {% block javascriptcode %}
   <script>
-    function extendrow(unique){
-      console.log("unique=>" ,unique)
+    function extendrow(unique) {
       var targetDiv = document.getElementById(unique);
-        
-        // Check if the div is currently hidden
-        if (targetDiv.classList.contains('hidden')) {
-            // Modify the inner HTML of the div
-            targetDiv.innerHTML = '<p>This is the content for ' + unique + '</p>';
-            
-            // Remove the 'hidden' class to show the div
-            targetDiv.classList.remove('hidden');
-        } else {
-            // Add the 'hidden' class to hide the div
-            targetDiv.classList.add('hidden');
-        }
-
+  
+      // Toggle the visibility of the div
+      if (targetDiv.classList.contains('hidden')) {
+        // Modify the inner HTML of the div
+        targetDiv.innerHTML = generateRowContent(unique);
+  
+        // Remove the 'hidden' class to show the div
+        targetDiv.classList.remove('hidden');
+      } else {
+        // Add the 'hidden' class to hide the div
+        targetDiv.classList.add('hidden');
+      }
     }
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-    
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
+  
+    function generateRowContent(unique) {
+      // You can replace the following line with your server-side logic to generate the HTML content
+      var content = `
+      <div class='table-responsive'>
+        <table class='table'>
+
+          <thead>
+            <tr>
+              <th scope='col' class='border-0 bg-light'>
+                <input type='checkbox' class=' d-inline-block align-middle'>
+                <div class='p-2 px-3 text-uppercase d-inline-block align-middle'></div>
+              </th>
+              <th scope='col' class='border-0 '>
+                
+                <div class='p-2 px-3 text-uppercase d-inline-block align-middle'></div>
+              </th>
+              <th scope='col' class='border-0 '>
+                <div class='py-2 text-uppercase'></div>
+              </th>
+              <th scope='col' class='border-0 '>
+                <div class='py-2 text-uppercase'></div>
+              </th>
+              <th scope='col' class='border-0 '>
+                <div class='py-2 text-uppercase'></div>
+              </th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td scope='row' class='border-0'>
+              <!-- Your existing code goes here -->
+            </td>
+            <td class='border-0 align-middle'><strong>one7000</strong></td>
+            <td class='border-0 align-middle'><strong>45</strong></td>
+            <td class='border-0 align-middle'><strong>455</strong></td>
+            <td class='border-0 align-middle'><a href='#' class="text-dark"><i class="fa fa-trash"></i></a></td>
+          </tr>
+        </tbody>
+        </table><br>`;
+  
+      return content;
     }
-    </script>
-
-
-  <script>
-    document.getElementById('plus_icon').addEventListener('click', function() {
-        alert('Button clicked!');
-        onclick('resizeimg')
-    });
-</script>
+  </script>
+  
 
 
 
