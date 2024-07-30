@@ -1,0 +1,19 @@
+2024-02-13 22:34:05             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=2deaaff26060543802d53a9543e3acf6&hmac=33830cb7d0a510b44bea3b6c87dabe75d731f9e52ff246bd750b3c064863f510&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1707843843'>
+2024-02-13 22:34:09             ERROR             views             get_current_user             one7000.myshopify.com {e}
+2024-02-13 22:34:09             ERROR             views             entry_user_details             one7000.myshopify.com current user not get 
+2024-02-13 22:34:09             ERROR             views             entry_user_details             Error inserting user details: Error: Current user data is None.
+2024-02-13 22:34:09             Updated             views.py             required_data_app_shop             one7000.myshopify.com updated => app_shop
+2024-02-13 22:34:11             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/create
+2024-02-13 22:34:14             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/update
+2024-02-13 22:34:16             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/delete
+2024-02-13 22:34:16             Success             views.py             get_access_token             req retur
+2024-02-13 22:41:01             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=2deaaff26060543802d53a9543e3acf6&hmac=33830cb7d0a510b44bea3b6c87dabe75d731f9e52ff246bd750b3c064863f510&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1707843843'>
+2024-02-13 22:41:22             SUCCESS             views.py connector             get_access_token             <WSGIRequest: GET '/connector/commense_auth/?code=c478c117e0dee65faccde9cb9ada25a2&hmac=e7b7c730c37181b2d6a0c63ec9ed00bb0e2fec370191e9b02dca3038a22ea099&host=YWRtaW4uc2hvcGlmeS5jb20vc3RvcmUvb25lNzAwMA&shop=one7000.myshopify.com&state=1245&timestamp=1707844280'>
+2024-02-13 22:41:25             ERROR             views             get_current_user             one7000.myshopify.com {e}
+2024-02-13 22:41:26             ERROR             views             entry_user_details             one7000.myshopify.com current user not get 
+2024-02-13 22:41:26             ERROR             views             entry_user_details             Error inserting user details: Error: Current user data is None.
+2024-02-13 22:41:26             Updated             views.py             required_data_app_shop             one7000.myshopify.com updated => app_shop
+2024-02-13 22:41:28             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/create
+2024-02-13 22:41:30             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/update
+2024-02-13 22:41:32             Success             views.py             create_webhook             one7000.myshopify.com created =>locations/delete
+2024-02-13 22:41:32             Success             views.py             get_access_token             req retur

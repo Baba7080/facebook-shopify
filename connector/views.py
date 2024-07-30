@@ -13,6 +13,8 @@ from rest_framework.views import APIView
 # from myproject.serializer import YourModelSerializer
 from .tests import *
 from rest_framework.response import Response
+from django.http import HttpResponseRedirect,HttpResponse
+
 # Create your views here.
 def home(request):
     substring = "one7000"
@@ -134,41 +136,48 @@ def get_current_user(shop_name,access_token):
 
 
 def get_access_token(req):
-
-    code = req.GET['code']
-    WriteIntoLog('SUCCESS','views.py connector',"get_access_token",str(req))
-    shop = req.GET['shop']
-    url = 'https://'+shop+'/admin/oauth/access_token?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&client_secret=66e38eda7208ed139c8209516a87e99f&code='+code
-    r = requests.post(url = url)
-    data = r.json()
-    get_shop = checkInstallation(shop,data['access_token'])
-    if(get_shop):
-        # something to do but for now posponing
-        pass
-        # checkEntry = entry_user_details(shop,data['access_token'])
-        # if checkEntry:
-        #     WriteIntoLog("Success","views","get_access_token",shop+" "+"User detail entry completed")
-        #     # return False
-    shop2 = str(shop)
-    substring = shop2.split('.')[0]
-    app_shop = required_data_app_shop(data,shop)
-    webhook = create_webhook(shop,data['access_token'])
-    if Products_collection.count_documents({"vendor": substring}) > 0:
-        pass
-    else:
-        dataa = get_bulk_product_from_shopify(shop,data['access_token'])
-        if dataa["success"]:
-            entry_product = entry_product_container(dataa)
+    try:
+        code = req.GET['code']
+        WriteIntoLog('SUCCESS','views.py connector',"get_access_token",str(req))
+        shop = req.GET['shop']
+        url = 'https://'+shop+'/admin/oauth/access_token?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&client_secret=66e38eda7208ed139c8209516a87e99f&code='+code
+        r = requests.post(url = url)
+        data = r.json()
+        get_shop = checkInstallation(shop,data['access_token'])
+        if(get_shop):
+            # something to do but for now posponing
+            pass
+            # checkEntry = entry_user_details(shop,data['access_token'])
+            # if checkEntry:
+            #     WriteIntoLog("Success","views","get_access_token",shop+" "+"User detail entry completed")
+            #     # return False
+        shop2 = str(shop)
+        substring = shop2.split('.')[0]
+        app_shop = required_data_app_shop(data,shop)
+        webhook = create_webhook(shop,data['access_token'])
+        if Products_collection.count_documents({"vendor": substring}) > 0:
+            pass
         else:
             dataa = get_bulk_product_from_shopify(shop,data['access_token'])
-            entry_product = entry_product_container(dataa)
+            if dataa["success"]:
+                entry_product = entry_product_container(dataa)
+            else:
+                dataa = get_bulk_product_from_shopify(shop,data['access_token'])
+                entry_product = entry_product_container(dataa)
 
-    shop2 = str(shop)
-    substring = shop2.split('.')[0]
-    product_container = Products_collection.find({"vendor": {"$regex": substring}})
-    # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
-    WriteIntoLog("Success","views.py","get_access_token","req retur")
-    return render(req,'productlisting.html',{'product':product_container})
+        shop2 = str(shop)
+        substring = shop2.split('.')[0]
+        product_container = Products_collection.find({"vendor": {"$regex": substring}})
+        # return redirect('https://50d5-2409-4063-431d-be37-1076-17ae-7ae-7dc.ngrok-free.app')
+        WriteIntoLog("Success","views.py","get_access_token","req retur")
+        return render(req,'productlisting.html',{'product':product_container})
+    except Exception as e:
+    # Code to execute if any other exception occurs
+        return HttpResponse(f"An error occurred: {e}")
+    # finally:
+    #     # Code to execute regardless of whether an exception occurs or not
+    #     return HttpResponse("This will always execute. {e}")
+
 def logcreation(request):
     WriteIntoLog("SuCCESS","views.py","logcreation","activated")
     return HttpResponse("hhhh")
@@ -284,3 +293,10 @@ def create_webhook(store,access_token):
     except Exception as e:
         # Handle other exceptions
         return JsonResponse({"success": False, "message": "An unexpected error occurred"}, status=500)
+
+
+
+def base_url(req):
+    return HttpResponse(req)
+def base2_url(req):
+    return HttpResponse(req)

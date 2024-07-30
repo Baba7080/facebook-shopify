@@ -191,6 +191,7 @@
   {% block javascriptcode %}
   <script>
     function extendrow(unique) {
+      console.log(unique);
       var targetDiv = document.getElementById(unique);
   
       // Toggle the visibility of the div
@@ -207,6 +208,8 @@
     }
   
     function generateRowContent(unique) {
+      alert("extend");
+      alert(product);
       // You can replace the following line with your server-side logic to generate the HTML content
       var content = `
       <div class='table-responsive'>
