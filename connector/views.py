@@ -26,10 +26,11 @@ def home(request):
 def oauth_shopify(req):
     shop = req.GET['shop']
     hmac = req.GET['hmac']
+    print([shop,hmac])
     # scopes =  "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
     # url = "https://"+shop+"/admin/oauth/authorize?client_id=3c1c07b2bb5602cfd617bce29c628736&scope="+ scopes +"&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
     scopes = "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
-    url = "https://" + shop + "/admin/oauth/authorize?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&scope=" + scopes + "&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
+    url = "https://" + shop + "/admin/oauth/authorize?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&scope=" + scopes + "&redirect_uri=http://ec2-18-118-154-90.us-east-2.compute.amazonaws.com/connector/commense_auth/&state=1245"
 
     response = redirect(url)
     return response
