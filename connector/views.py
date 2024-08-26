@@ -297,6 +297,26 @@ def create_webhook(store,access_token):
 
 
 def base_url(req):
+    request_data = {
+        "method": req.method,
+        "path": req.path,
+        "GET_params": req.GET.dict(),
+        "POST_params": req.POST.dict(),
+        "headers": dict(req.headers),
+        "remote_addr": req.META.get('REMOTE_ADDR'),
+        "user_agent": req.META.get('HTTP_USER_AGENT')
+    }
+    base = auth_token.insert_one(request_data)
     return HttpResponse(req)
 def base2_url(req):
+    request_data = {
+        "method": req.method,
+        "path": req.path,
+        "GET_params": req.GET.dict(),
+        "POST_params": req.POST.dict(),
+        "headers": dict(req.headers),
+        "remote_addr": req.META.get('REMOTE_ADDR'),
+        "user_agent": req.META.get('HTTP_USER_AGENT')
+    }
+    base = auth_token.insert_one(request_data)
     return HttpResponse(req)
