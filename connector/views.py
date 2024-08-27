@@ -102,6 +102,9 @@ def getwebhook(req):
     store  = req.GET['store']
     if req.method == 'POST':
         request_body = req.body
+        respo.insert_one({"1":"aya to tha"})
+        respo.insert_one({"2":req})
+        respo.insert_one({"body":request_body})
         # Process the request_body as needed
         return JsonResponse({"message": "Request body received"})
     return True
@@ -255,7 +258,7 @@ def create_webhook(store,access_token):
         if webhook_collection.count_documents({"shop_name": store}) > 0:
             WriteIntoLog('Success','views.py','create_webhook',store+" "+"webhook already exist")
             return True
-        webhook = ["locations/create", "locations/update", "locations/delete"]
+        webhook = ["locations/create", "locations/update", "locations/delete","order_transactions/create","orders/create"]
         headers = {
             'X-Shopify-Access-Token': access_token,
             'Content-Type': 'application/json'
@@ -265,7 +268,7 @@ def create_webhook(store,access_token):
             value = topic.replace('/', '_')
             data = {
                 "webhook": {
-                    "address": "https://86b9-2405-201-600b-1eca-a472-6e24-88ad-5ddf.ngrok-free.app/connector/webhook?webhook=" + value + "&store=" + store,
+                    "address": "http://ec2-18-118-154-90.us-east-2.compute.amazonaws.com/connector/webhook?webhook=" + value + "&store=" + store,
                     "topic": topic,
                     "format": "json"
                 }
