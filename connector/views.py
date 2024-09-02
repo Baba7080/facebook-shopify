@@ -98,9 +98,12 @@ def entry_user_details(shop_name,access_token):
         return False
 @csrf_exempt
 def getwebhook(req):
+    print(req)
     name_webhook = req.GET['webhook']
-    store  = req.GET['store']
+    # store  = req.GET['store']
+    print(name_webhook)
     if req.method == 'POST':
+        print("method is post")
         request_body = req.body
         respo.insert_one({"1":"aya to tha"})
         respo.insert_one({"2":req})
