@@ -104,10 +104,12 @@ def getwebhook(req):
     print(name_webhook)
     if req.method == 'POST':
         print("method is post")
-        request_body = req.body
-        respo.insert_one({"1":"aya to tha"})
-        respo.insert_one({"2":req})
-        respo.insert_one({"body":request_body})
+        # request_body = req.body
+        data = req.POST.dict()
+        print(data)
+        # respo.insert_one({"1":"aya to tha"})
+        # respo.insert_one({"2":req})
+        # respo.insert_one({"body":request_body})
         # Process the request_body as needed
         return JsonResponse({"message": "Request body received"})
     return True
