@@ -268,7 +268,7 @@ def create_webhook(store,access_token):
             value = topic.replace('/', '_')
             data = {
                 "webhook": {
-                    "address": "http://ec2-18-118-154-90.us-east-2.compute.amazonaws.com/connector/webhook?webhook=" + value + "&store=" + store,
+                    "address": "https://eccom.bytelinkup.com/connector/webhook?webhook=" + value + "&store=" + store,
                     "topic": topic,
                     "format": "json"
                 }
