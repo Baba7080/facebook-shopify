@@ -30,7 +30,7 @@ def oauth_shopify(req):
     # scopes =  "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
     # url = "https://"+shop+"/admin/oauth/authorize?client_id=3c1c07b2bb5602cfd617bce29c628736&scope="+ scopes +"&redirect_uri=http://127.0.0.1:8000/connector/commense_auth/&state=1245"
     scopes = "write_inventory,write_locations,read_locations,write_merchant_managed_fulfillment_orders,read_orders,write_products,read_products,write_resource_feedbacks,read_resource_feedbacks"
-    url = "https://" + shop + "/admin/oauth/authorize?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&scope=" + scopes + "&redirect_uri=http://ec2-18-118-154-90.us-east-2.compute.amazonaws.com/connector/commense_auth/&state=1245"
+    url = "https://" + shop + "/admin/oauth/authorize?client_id=79e8161414367fe343cadedc0d9c1013&scope=" + scopes + "&redirect_uri=https://eccom.bytelinkup.com/connector/commense_auth/&state=1245"
 
     response = redirect(url)
     return response
@@ -144,7 +144,7 @@ def get_access_token(req):
         code = req.GET['code']
         WriteIntoLog('SUCCESS','views.py connector',"get_access_token",str(req))
         shop = req.GET['shop']
-        url = 'https://'+shop+'/admin/oauth/access_token?client_id=fe806c9fb2fc33a2cd2adbaac35ed29f&client_secret=66e38eda7208ed139c8209516a87e99f&code='+code
+        url = 'https://'+shop+'/admin/oauth/access_token?client_id=79e8161414367fe343cadedc0d9c1013&client_secret=8d70580b9c8847884bfa9b86c4d6dab5&code='+code
         r = requests.post(url = url)
         data = r.json()
         get_shop = checkInstallation(shop,data['access_token'])
