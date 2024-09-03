@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 from .tests import *
 from rest_framework.response import Response
 from django.http import HttpResponseRedirect,HttpResponse
-
+import json
 # Create your views here.
 def home(request):
     substring = "one7000"
@@ -96,23 +96,44 @@ def entry_user_details(shop_name,access_token):
         # Handle the error in a way that makes sense for your application
         # For example, you might want to log the error, send a notification, etc.
         return False
+
 @csrf_exempt
 def getwebhook(req):
-    print(req)
-    name_webhook = req.GET['webhook']
-    # store  = req.GET['store']
-    print(name_webhook)
     if req.method == 'POST':
-        print("method is post")
-        # request_body = req.body
-        data = req.POST.dict()
-        print(data)
-        # respo.insert_one({"1":"aya to tha"})
-        # respo.insert_one({"2":req})
-        # respo.insert_one({"body":request_body})
-        # Process the request_body as needed
-        return JsonResponse({"message": "Request body received"})
-    return True
+        try:
+            json_data = json.loads(req.body)
+            status = 'success'
+        except ValueError:
+            json_data = None
+        
+        # Return a JSON response
+        return JsonResponse({
+            'status': 'success',
+            'json_data': json_data
+        })
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Invalid request method, only POST is allowed.'
+        })
+
+# @csrf_exempt
+# def getwebhook(req):
+#     print(req)
+#     name_webhook = req.GET['webhook']
+#     # store  = req.GET['store']
+#     print(name_webhook)
+#     if req.method == 'POST':
+#         print("method is post")
+#         # request_body = req.body
+#         data = req.POST.dict()
+#         print(data)
+#         # respo.insert_one({"1":"aya to tha"})
+#         # respo.insert_one({"2":req})
+#         # respo.insert_one({"body":request_body})
+#         # Process the request_body as needed
+#         return JsonResponse({"message": "Request body received"})
+#     return True
 
 
 
