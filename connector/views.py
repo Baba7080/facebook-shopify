@@ -99,9 +99,15 @@ def entry_user_details(shop_name,access_token):
 
 @csrf_exempt
 def getwebhook(req):
+    name_webhook = req.GET['webhook']
+    print(name_webhook)
+    print("hhhhhhh")
+
+    
     if req.method == 'POST':
         try:
             json_data = json.loads(req.body)
+            print(json_data)
             status = 'success'
         except ValueError:
             json_data = None
@@ -284,7 +290,8 @@ def create_webhook(store,access_token):
         if webhook_collection.count_documents({"shop_name": store}) > 0:
             WriteIntoLog('Success','views.py','create_webhook',store+" "+"webhook already exist")
             return True
-        webhook = ["locations/create", "locations/update", "locations/delete","order_transactions/create","orders/create"]
+        webhook = ["locations/create", "locations/update", "locations/delete","order_transactions/create","orders/create","orders/delete",
+                   "orders/paid","orders/update","orders/fulfilled","orders/edited"]
         headers = {
             'X-Shopify-Access-Token': access_token,
             'Content-Type': 'application/json'
