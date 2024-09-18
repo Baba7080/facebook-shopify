@@ -15,6 +15,8 @@ from .tests import *
 from rest_framework.response import Response
 from django.http import HttpResponseRedirect,HttpResponse
 import json
+from rest_framework import generics, status
+import bson
 # Create your views here.
 def home(request):
     substring = "one7000"
@@ -97,31 +99,52 @@ def entry_user_details(shop_name,access_token):
         # For example, you might want to log the error, send a notification, etc.
         return False
 
-@csrf_exempt
-def getwebhook(req):
-    name_webhook = req.GET['webhook']
-    print(name_webhook)
-    print("hhhhhhh")
+# @csrf_exempt
+# def getwebhook(req):
+#     name_webhook = req.GET['webhook']
+#     print(name_webhook)
+#     print("hhhhhhh")
 
     
-    if req.method == 'POST':
-        try:
-            json_data = json.loads(req.body)
-            print(json_data)
-            status = 'success'
-        except ValueError:
-            json_data = None
+#     if req.method == 'POST':
+#         try:
+#             json_data = json.loads(req.body)
+#             print(json_data)
+#             status = 'success'
+#         except ValueError:
+#             json_data = None
         
-        # Return a JSON response
-        return JsonResponse({
-            'status': 'success',
-            'json_data': json_data
-        })
-    else:
-        return JsonResponse({
-            'status': 'error',
-            'message': 'Invalid request method, only POST is allowed.'
-        })
+#         # Return a JSON response
+#         return JsonResponse({
+#             'status': 'success',
+#             'json_data': json_data
+#         })
+#     else:
+#         return JsonResponse({
+#             'status': 'error',
+#             'message': 'Invalid request method, only POST is allowed.'
+#         })
+class GetwebhookView(generics.ListAPIView):
+     def post(self, request, *args, **kwargs):
+        try:
+            # Parse the JSON data from the request body
+            json_data = json.loads(request.body)
+            print("hhhhhhh")
+            print(json_data)
+            print(json_data['id'])
+            respo.insert_one({"1":"aya to tha"})
+            respo.insert_one({"2":request})
+            respo.insert_one({"body":json_data})
+
+            # Add your logic to handle the json_data here
+            return Response({"status": "success", "data": json_data})
+        
+        except json.JSONDecodeError:
+            return Response({"status": "error", "message": "Invalid JSON data"}, status=400)
+        
+        except bson.errors.InvalidDocument as e:
+            return Response({"status": "error", "message": f"BSON error: {str(e)}"}, status=400)
+
 
 # @csrf_exempt
 # def getwebhook(req):
